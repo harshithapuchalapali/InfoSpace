@@ -1,0 +1,187 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
+  <defs>
+    <!-- Brand gradients -->
+    <linearGradient id="gBrand" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#6366f1"/>
+      <stop offset="50%" stop-color="#8b5cf6"/>
+      <stop offset="100%" stop-color="#a855f7"/>
+    </linearGradient>
+    <linearGradient id="gBrandReverse" x1="100%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#a855f7"/>
+      <stop offset="50%" stop-color="#818cf8"/>
+      <stop offset="100%" stop-color="#6366f1"/>
+    </linearGradient>
+    <linearGradient id="gDark" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1a1d27"/>
+      <stop offset="100%" stop-color="#222640"/>
+    </linearGradient>
+    <radialGradient id="gAura" cx="50%" cy="45%" r="50%">
+      <stop offset="0%" stop-color="#a855f7" stop-opacity="0.25"/>
+      <stop offset="60%" stop-color="#6366f1" stop-opacity="0.08"/>
+      <stop offset="100%" stop-color="#6366f1" stop-opacity="0"/>
+    </radialGradient>
+
+    <!-- Filters -->
+    <filter id="shadowDepth">
+      <feDropShadow dx="0" dy="3" stdDeviation="5" flood-color="#6366f1" flood-opacity="0.35"/>
+    </filter>
+    <filter id="nodeGlow">
+      <feGaussianBlur stdDeviation="2" result="b"/>
+      <feMerge><feMergeNode in="b"/><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="softGlow">
+      <feGaussianBlur stdDeviation="4" result="b"/>
+      <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <!-- Animations -->
+    <style>
+      @keyframes aperture-spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+      }
+      @keyframes aperture-spin-reverse {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(-360deg); }
+      }
+      @keyframes pulse-node {
+        0%, 100% { opacity: 0.7; r: 4; }
+        50% { opacity: 1; r: 5.5; }
+      }
+      @keyframes pulse-glow-ring {
+        0%, 100% { opacity: 0.15; stroke-width: 1.5; }
+        50% { opacity: 0.35; stroke-width: 2.5; }
+      }
+      @keyframes data-flow {
+        0% { stroke-dashoffset: 120; opacity: 0; }
+        20% { opacity: 0.8; }
+        80% { opacity: 0.6; }
+        100% { stroke-dashoffset: 0; opacity: 0; }
+      }
+      @keyframes orbit-a {
+        0% { transform: rotate(0deg) translateX(-42px) rotate(0deg); }
+        100% { transform: rotate(360deg) translateX(-42px) rotate(-360deg); }
+      }
+      @keyframes orbit-b {
+        0% { transform: rotate(0deg) translateX(-42px) rotate(0deg); }
+        100% { transform: rotate(-360deg) translateX(-42px) rotate(360deg); }
+      }
+
+      .rotate-slow { animation: aperture-spin 20s linear infinite; transform-origin: 100px 90px; }
+      .rotate-slower { animation: aperture-spin-reverse 30s linear infinite; transform-origin: 100px 90px; }
+      .pulse-node-1 { animation: pulse-node 2.8s ease-in-out infinite; transform-origin: center; transform-box: fill-box; }
+      .pulse-node-2 { animation: pulse-node 2.8s ease-in-out infinite 0.7s; transform-origin: center; transform-box: fill-box; }
+      .pulse-node-3 { animation: pulse-node 2.8s ease-in-out infinite 1.4s; transform-origin: center; transform-box: fill-box; }
+      .pulse-node-4 { animation: pulse-node 2.8s ease-in-out infinite 2.1s; transform-origin: center; transform-box: fill-box; }
+      .pulse-ring { animation: pulse-glow-ring 3s ease-in-out infinite; transform-origin: center; transform-box: fill-box; }      .data-flow-a { animation: data-flow 3s ease-in-out infinite; }
+      .data-flow-b { animation: data-flow 3s ease-in-out infinite 1s; }
+      .data-flow-c { animation: data-flow 3s ease-in-out infinite 2s; }
+      
+    </style>
+  </defs>
+
+  <!-- Outer ambient glow aura -->
+  <circle cx="100" cy="90" r="95" fill="url(#gAura)"/>
+
+  <!-- === Outer circular badge (round!) === -->
+  <circle cx="100" cy="90" r="82" fill="url(#gDark)" stroke="url(#gBrand)" stroke-width="2" filter="url(#shadowDepth)"/>
+  <circle cx="100" cy="90" r="78" fill="none" stroke="url(#gBrand)" stroke-width="0.5" opacity="0.15"/>
+
+  <!-- === Aperture blades (Snap element) === -->
+  <g class="rotate-slow" opacity="0.2">
+    <polygon points="100,20 85,58 78,55 100,10" fill="url(#gBrand)" opacity="0.6"/>
+    <polygon points="100,20 115,58 122,55 100,10" fill="url(#gBrandReverse)" opacity="0.4"/>
+    <polygon points="100,160 85,122 78,125 100,170" fill="url(#gBrandReverse)" opacity="0.4"/>
+    <polygon points="100,160 115,122 122,125 100,170" fill="url(#gBrand)" opacity="0.6"/>
+  </g>
+  <g class="rotate-slower" opacity="0.15">
+    <polygon points="100,20 85,58 78,55 100,10" fill="url(#gBrandReverse)" opacity="0.4"/>
+    <polygon points="100,20 115,58 122,55 100,10" fill="url(#gBrand)" opacity="0.6"/>
+    <polygon points="100,160 85,122 78,125 100,170" fill="url(#gBrand)" opacity="0.6"/>
+    <polygon points="100,160 115,122 122,125 100,170" fill="url(#gBrandReverse)" opacity="0.4"/>
+  </g>
+
+  <!-- Slightly visible aperture ring -->
+  <g opacity="0.08">
+    <circle cx="100" cy="90" r="42" fill="none" stroke="url(#gBrand)" stroke-width="1" class="rotate-slow"/>
+    <circle cx="100" cy="90" r="48" fill="none" stroke="url(#gBrand)" stroke-width="1" class="rotate-slower"/>
+  </g>
+
+  <!-- === Camera shutter blades (aperture mechanism) === -->
+  <g opacity="0.12">
+    <!-- 6-blade aperture -->
+    <polygon points="100,48 132,60 155,90 145,122 118,140 82,140 55,122 45,90 68,60" fill="none" stroke="url(#gBrand)" stroke-width="1" class="rotate-slow"/>
+    <polygon points="100,58 126,68 145,92 138,118 115,132 85,132 62,118 55,92 74,68" fill="none" stroke="url(#gBrandReverse)" stroke-width="0.5" class="rotate-slower"/>
+  </g>
+
+  <!-- === Data network (Info element) - inside aperture === -->
+  <!-- Connection lines -->
+  <g opacity="0.3" stroke="url(#gBrand)" stroke-width="1" stroke-linecap="round">
+    <!-- Top to center-left -->
+    <line x1="100" y1="52" x2="72" y2="80"/>
+    <!-- Top to center-right -->
+    <line x1="100" y1="52" x2="128" y2="80"/>
+    <!-- Left to center -->
+    <line x1="62" y1="80" x2="100" y2="90"/>
+    <!-- Right to center -->
+    <line x1="138" y1="80" x2="100" y2="90"/>
+    <!-- Center-left to bottom -->
+    <line x1="72" y1="80" x2="88" y2="118"/>
+    <!-- Center-right to bottom -->
+    <line x1="128" y1="80" x2="112" y2="118"/>
+    <!-- Bottom cross -->
+    <line x1="88" y1="118" x2="112" y2="118"/>
+    <!-- Side connections -->
+    <line x1="62" y1="80" x2="72" y2="80"/>
+    <line x1="128" y1="80" x2="138" y2="80"/>
+  </g>
+
+  <!-- Data flow animated dashes -->
+  <g opacity="0.4" stroke="#c084fc" stroke-width="1.5" stroke-dasharray="4 12" stroke-linecap="round">
+    <line x1="100" y1="52" x2="72" y2="80" class="data-flow-a"/>
+    <line x1="72" y1="80" x2="100" y2="90" class="data-flow-b"/>
+    <line x1="100" y1="90" x2="128" y2="80" class="data-flow-c"/>
+    <line x1="128" y1="80" x2="112" y2="118" class="data-flow-a"/>
+    <line x1="88" y1="118" x2="72" y2="80" class="data-flow-b"/>
+  </g>
+
+  <!-- Data nodes -->
+  <!-- Top node -->
+  <circle cx="100" cy="52" r="9" fill="#1a1d27" stroke="url(#gBrand)" stroke-width="2.5"/>
+  <circle cx="100" cy="52" r="4.5" fill="url(#gBrand)" class="pulse-node-1" filter="url(#nodeGlow)"/>
+
+  <!-- Left node -->
+  <circle cx="62" cy="80" r="9" fill="#1a1d27" stroke="url(#gBrand)" stroke-width="2.5"/>
+  <circle cx="62" cy="80" r="4.5" fill="url(#gBrandReverse)" class="pulse-node-2" filter="url(#nodeGlow)"/>
+
+  <!-- Right node -->
+  <circle cx="138" cy="80" r="9" fill="#1a1d27" stroke="url(#gBrand)" stroke-width="2.5"/>
+  <circle cx="138" cy="80" r="4.5" fill="url(#gBrand)" class="pulse-node-3" filter="url(#nodeGlow)"/>
+
+  <!-- Bottom-left node -->
+  <circle cx="88" cy="118" r="9" fill="#1a1d27" stroke="url(#gBrand)" stroke-width="2.5"/>
+  <circle cx="88" cy="118" r="4.5" fill="url(#gBrandReverse)" class="pulse-node-4" filter="url(#nodeGlow)"/>
+
+  <!-- Bottom-right node -->
+  <circle cx="112" cy="118" r="9" fill="#1a1d27" stroke="url(#gBrand)" stroke-width="2.5"/>
+  <circle cx="112" cy="118" r="4.5" fill="url(#gBrand)" class="pulse-node-1" filter="url(#nodeGlow)"/>
+
+  <!-- === Center capture target (simple, no shine) === -->
+  <circle cx="100" cy="90" r="6" fill="#6366f1" opacity="0.5"/>
+  <circle cx="100" cy="90" r="2" fill="#818cf8"/>
+
+  <!-- === Orbiting data particles === -->
+  <g>
+    <circle cx="100" cy="90" r="3" fill="#c084fc" class="rotate-slow" style="transform-origin: 100px 90px; animation: orbit-a 6s linear infinite;" filter="url(#nodeGlow)"/>
+    <circle cx="100" cy="90" r="2" fill="#818cf8" class="rotate-slower" style="transform-origin: 100px 90px; animation: orbit-b 8s linear infinite;" filter="url(#nodeGlow)"/>
+  </g>
+
+  <!-- Small data sparkles -->
+  <circle cx="100" cy="28" r="1.2" fill="#a855f7" opacity="0.4"/>
+  <circle cx="130" cy="32" r="1" fill="#818cf8" opacity="0.3"/>
+  <circle cx="74" cy="34" r="1" fill="#c084fc" opacity="0.3"/>
+  <circle cx="160" cy="72" r="1.2" fill="#a855f7" opacity="0.35"/>
+  <circle cx="40" cy="75" r="1" fill="#818cf8" opacity="0.3"/>
+  <circle cx="150" cy="125" r="1" fill="#c084fc" opacity="0.3"/>
+  <circle cx="56" cy="120" r="1.2" fill="#a855f7" opacity="0.35"/>
+  <circle cx="100" cy="155" r="1" fill="#818cf8" opacity="0.3"/>
+</svg>

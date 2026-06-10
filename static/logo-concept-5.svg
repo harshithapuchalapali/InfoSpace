@@ -1,0 +1,66 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
+  <defs>
+    <linearGradient id="g1" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#6366f1"/>
+      <stop offset="100%" style="stop-color:#a855f7"/>
+    </linearGradient>
+    <linearGradient id="g2" x1="0%" y1="100%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#818cf8"/>
+      <stop offset="100%" style="stop-color:#6366f1"/>
+    </linearGradient>
+    <!-- Drop shadow for main node -->
+    <filter id="s1">
+      <feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="#6366f1" flood-opacity="0.45"/>
+    </filter>
+    <!-- Glow for highlight ring -->
+    <filter id="glowRing">
+      <feGaussianBlur stdDeviation="3" result="b"/>
+      <feMerge><feMergeNode in="b"/><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <!-- Dot glow -->
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="1.5" result="b"/>
+      <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+
+  <!-- Background outer ring (subtle) -->
+  <circle cx="100" cy="100" r="88" fill="none" stroke="url(#g1)" stroke-width="1" opacity="0.06"/>
+
+  <!-- Flowing data stream lines (thin background) -->
+  <path d="M30 140 Q60 140 70 110 Q80 80 100 80 Q120 80 130 110 Q140 140 170 140"
+        fill="none" stroke="url(#g1)" stroke-width="2" stroke-linecap="round" opacity="0.12"/>
+  <path d="M35 150 Q65 150 75 120 Q85 90 105 90 Q125 90 135 120 Q145 150 175 150"
+        fill="none" stroke="url(#g1)" stroke-width="1.5" stroke-linecap="round" opacity="0.08"/>
+
+  <!-- === GLOWING HIGHLIGHT RING around the capture node === -->
+  <!-- Outer glow aura -->
+  <circle cx="100" cy="80" r="46" fill="none" stroke="#818cf8" stroke-width="8" opacity="0.08" filter="url(#glowRing)"/>
+  <!-- Bright ring highlight -->
+  <circle cx="100" cy="80" r="44" fill="none" stroke="url(#g1)" stroke-width="3" opacity="0.4" filter="url(#glowRing)"/>
+  <!-- Inner sharp ring -->
+  <circle cx="100" cy="80" r="43" fill="none" stroke="#a855f7" stroke-width="1.5" opacity="0.6"/>
+
+  <!-- Main capture node -->
+  <circle cx="100" cy="80" r="38" fill="url(#g1)" filter="url(#s1)"/>
+
+  <!-- Inner white circle -->
+  <circle cx="100" cy="80" r="28" fill="#ffffff" opacity="0.96"/>
+
+  <!-- Abstract data capture symbol - a stylized "S" for Snap/Stream (THINNER) -->
+  <path d="M88 72 Q100 68 108 72 Q116 76 112 82 Q108 88 92 88 Q80 88 82 94 Q84 100 100 100"
+        fill="none" stroke="url(#g1)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="100" cy="100" r="2.5" fill="url(#g1)" opacity="0.8"/>
+
+  <!-- Data dots flowing -->
+  <circle cx="62" cy="132" r="2.5" fill="#818cf8" opacity="0.5" filter="url(#glow)"/>
+  <circle cx="82" cy="125" r="1.8" fill="#a855f7" opacity="0.4"/>
+  <circle cx="45" cy="140" r="1.5" fill="#818cf8" opacity="0.3"/>
+  <circle cx="140" cy="132" r="2" fill="#c084fc" opacity="0.5" filter="url(#glow)"/>
+  <circle cx="155" cy="138" r="1.5" fill="#818cf8" opacity="0.3"/>
+
+  <!-- Small decorative dots top -->
+  <circle cx="80" cy="48" r="1.2" fill="#818cf8" opacity="0.3"/>
+  <circle cx="120" cy="48" r="1.2" fill="#a855f7" opacity="0.3"/>
+  <circle cx="100" cy="44" r="1.5" fill="#c084fc" opacity="0.4"/>
+</svg>

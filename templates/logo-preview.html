@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>InfoSnap — Logo Selection</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: #0f1117;
+      color: #e2e8f0;
+      padding: 48px 24px;
+      min-height: 100vh;
+    }
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    h1 {
+      text-align: center;
+      font-size: 2.2rem;
+      font-weight: 800;
+      background: linear-gradient(135deg, #6366f1, #a855f7, #ec4899);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 8px;
+    }
+    .subtitle {
+      text-align: center;
+      color: #94a3b8;
+      font-size: 1rem;
+      margin-bottom: 8px;
+    }
+    .pick-instruction {
+      text-align: center;
+      color: #64748b;
+      font-size: 0.9rem;
+      margin-bottom: 40px;
+      padding: 12px 20px;
+      background: #1a1d27;
+      border: 1px dashed #2d3250;
+      border-radius: 10px;
+      display: inline-block;
+      width: auto;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 24px;
+    }
+    .card {
+      background: #1a1d27;
+      border: 1px solid #2d3250;
+      border-radius: 16px;
+      padding: 28px 24px 24px;
+      text-align: center;
+      transition: all 0.35s ease;
+      position: relative;
+      overflow: hidden;
+    }
+    .card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, #6366f1, #a855f7);
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+    .card:hover::before { opacity: 1; }
+    .card:hover {
+      border-color: #6366f1;
+      transform: translateY(-6px);
+      box-shadow: 0 12px 40px rgba(99,102,241,0.2);
+    }
+    .card .number-badge {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #6366f1, #a855f7);
+      color: #fff;
+      font-size: 0.9rem;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+    .card .preview-wrap {
+      background: #0f1117;
+      border-radius: 12px;
+      padding: 20px;
+      margin: 12px 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+    .card .preview-wrap img {
+      width: 80px;
+      height: 80px;
+      transition: transform 0.3s;
+    }
+    .card:hover .preview-wrap img { transform: scale(1.08); }
+    .card .mock-header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background: #1a1d27;
+      padding: 8px 14px;
+      border-radius: 8px;
+      border: 1px solid #2d3250;
+    }
+    .card .mock-header .mock-dot {
+      width: 6px; height: 6px; border-radius: 50%; background: #6366f1;
+    }
+    .card .mock-header .mock-text {
+      font-size: 0.75rem; color: #94a3b8; font-weight: 600;
+    }
+    .card h3 {
+      font-size: 1.1rem;
+      color: #e2e8f0;
+      margin: 8px 0 6px;
+    }
+    .card .desc {
+      font-size: 0.85rem;
+      color: #94a3b8;
+      line-height: 1.5;
+      margin-bottom: 10px;
+    }
+    .card .style-tag {
+      display: inline-block;
+      padding: 4px 14px;
+      border-radius: 20px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      margin: 4px 3px;
+    }
+    .tag-1 { background: rgba(99,102,241,0.15); color: #818cf8; }
+    .tag-2 { background: rgba(34,197,94,0.15); color: #4ade80; }
+    .tag-3 { background: rgba(236,72,153,0.15); color: #f472b6; }
+    .tag-4 { background: rgba(251,191,36,0.15); color: #fbbf24; }
+    .tag-5 { background: rgba(168,85,247,0.15); color: #c084fc; }
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: #6366f1;
+      text-decoration: none;
+      font-size: 0.9rem;
+      margin-top: 32px;
+      padding: 8px 16px;
+      border-radius: 8px;
+      transition: background 0.2s;
+    }
+    .back-link:hover { background: rgba(99,102,241,0.1); }
+    .footer-bar {
+      text-align: center;
+      margin-top: 32px;
+    }
+    @media (max-width: 640px) {
+      .grid { grid-template-columns: 1fr; }
+      h1 { font-size: 1.6rem; }
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+  <h1>🎨 InfoSnap Logo Collection</h1>
+  <p class="subtitle">Each concept blends <strong>"Info"</strong> (data) with <strong>"Snap"</strong> (quick capture)</p>
+  <div class="pick-instruction">👆 Hover over each logo &nbsp;·&nbsp; Tell me the <strong>number</strong> of your favorite!</div>
+
+  <div class="grid">
+    <!-- 1 -->
+    <div class="card">
+      <div class="number-badge">1</div>
+      <h3>Snap Capture</h3>
+      <div class="preview-wrap">
+        <img src="/static/logo-concept-1.svg" alt="Snap Capture" style="border-radius:50%;width:80px;height:80px;object-fit:cover;">
+        <div class="mock-header">
+          <div class="mock-dot"></div>
+          <span class="mock-text">InfoSnap</span>
+        </div>
+      </div>
+      <p class="desc">A circular data capture badge combining a camera aperture (Snap) with glowing data network nodes (Info) — precision and intelligence</p>
+      <span class="style-tag tag-1">🎯 Round</span>
+      <span class="style-tag tag-1">📡 Data Capture</span>
+      <span class="style-tag tag-1">⚡ Animated</span>
+    </div>
+    <!-- 2 -->
+    <div class="card">
+      <div class="number-badge">2</div>
+      <h3>Snap Frame</h3>
+      <div class="preview-wrap">
+        <img src="/static/logo-concept-2.svg" alt="Snap Frame">
+        <div class="mock-header">
+          <div class="mock-dot"></div>
+          <span class="mock-text">InfoSnap</span>
+        </div>
+      </div>
+      <p class="desc">Focus brackets around a screen with a rising data chart — clean, dashboard-like, professional</p>
+      <span class="style-tag tag-2">✨ Clean</span>
+      <span class="style-tag tag-2">📊 Data-Focused</span>
+    </div>
+    <!-- 3 -->
+    <div class="card">
+      <div class="number-badge">3</div>
+      <h3>Data Bolt</h3>
+      <div class="preview-wrap">
+        <img src="/static/logo-concept-3.svg" alt="Data Bolt">
+        <div class="mock-header">
+          <div class="mock-dot"></div>
+          <span class="mock-text">InfoSnap</span>
+        </div>
+      </div>
+      <p class="desc">Lightning bolt crafted from connected data nodes — speed, energy, instant data capture</p>
+      <span class="style-tag tag-3">⚡ Bold</span>
+      <span class="style-tag tag-3">🚀 Energetic</span>
+    </div>
+    <!-- 4 -->
+    <div class="card">
+      <div class="number-badge">4</div>
+      <h3>Precision Target</h3>
+      <div class="preview-wrap">
+        <img src="/static/logo-concept-4.svg" alt="Precision Target">
+        <div class="mock-header">
+          <div class="mock-dot"></div>
+          <span class="mock-text">InfoSnap</span>
+        </div>
+      </div>
+      <p class="desc">Crosshair targeting data nodes — precision, accuracy, pinpoints exactly what you need</p>
+      <span class="style-tag tag-4">🎯 Minimal</span>
+      <span class="style-tag tag-4">📐 Precise</span>
+    </div>
+    <!-- 5 -->
+    <div class="card">
+      <div class="number-badge">5</div>
+      <h3>Data Stream</h3>
+      <div class="preview-wrap">
+        <img src="/static/logo-concept-5.svg" alt="Data Stream">
+        <div class="mock-header">
+          <div class="mock-dot"></div>
+          <span class="mock-text">InfoSnap</span>
+        </div>
+      </div>
+      <p class="desc">Flowing data stream with a capture node and stylized "S" for Snap/Stream — fluid & dynamic</p>
+      <span class="style-tag tag-5">🌊 Fluid</span>
+      <span class="style-tag tag-5">🌀 Dynamic</span>
+    </div>
+  </div>
+
+  <div class="footer-bar">
+    <a href="/" class="back-link">← Back to InfoSnap App</a>
+  </div>
+</div>
+</body>
+</html>
