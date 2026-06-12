@@ -6,7 +6,7 @@ from .entities import PageData
 
 class PageFetcherPort(ABC):
     @abstractmethod
-    def fetch(self, url: str) -> Optional[PageData]:
+    def fetch(self, url: str, ignore_robots: bool = False) -> Optional[PageData]:
         ...
 
     @abstractmethod

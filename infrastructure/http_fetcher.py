@@ -112,9 +112,9 @@ class RequestsPageFetcher(PageFetcherPort):
             "Upgrade-Insecure-Requests": "1",
         }
 
-    def fetch(self, url: str) -> Optional[PageData]:
+    def fetch(self, url: str, ignore_robots: bool = False) -> Optional[PageData]:
         url = url.strip()
-        if self._robots and not self._robots.can_fetch(url):
+        if not ignore_robots and self._robots and not self._robots.can_fetch(url):
             raise RobotsBlockedError(f"Blocked by robots.txt: {url}")
         self._rate_limiter.wait()
         try:

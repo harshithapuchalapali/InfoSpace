@@ -6,7 +6,7 @@ import re
 
 from flask import Blueprint, jsonify, request, Response
 
-from application import ScrapeUseCase, ExportUseCase, ScrapeRequestDTO, ScrapeResponseDTO
+from application import ScrapeUseCase, ExportUseCase
 from domain import ScrapeRequest, RobotsBlockedError
 
 logger = logging.getLogger(__name__)
@@ -14,21 +14,18 @@ logger = logging.getLogger(__name__)
 web_bp = Blueprint("web", __name__)
 
 _latest_data: list[dict] = []
-_latest_format: str = "json"
 
 _scrape_uc: ScrapeUseCase = None
-_export_uc: ExportUseCase = None
 
 
-def init_controllers(scrape_uc: ScrapeUseCase, export_uc: ExportUseCase) -> None:
-    global _scrape_uc, _export_uc
+def init_controllers(scrape_uc: ScrapeUseCase) -> None:
+    global _scrape_uc
     _scrape_uc = scrape_uc
-    _export_uc = export_uc
 
 
 @web_bp.route("/api/scrape", methods=["POST"])
 def api_scrape():
-    global _latest_data, _latest_format
+    global _latest_data
 
     body = request.get_json(silent=True) or {}
     url = (body.get("url") or "").strip()
@@ -52,6 +49,7 @@ def api_scrape():
         extract_links=(mode == "links"),
         extract_images=(mode == "images"),
         summary_only=(mode == "summary"),
+        ignore_robots=ignore_robots,
     )
 
     try:
@@ -101,7 +99,6 @@ def api_scrape():
     else:
         return jsonify({"success": False, "error": f"Unknown mode: {mode}"}), 400
 
-    _latest_format = mode
     return jsonify(result)
 
 

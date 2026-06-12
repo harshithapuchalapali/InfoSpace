@@ -24,6 +24,7 @@ class ScrapeRequest:
     extract_images: bool = False
     summary_only: bool = False
     table_selector: Optional[str] = None
+    ignore_robots: bool = False
 
 
 @dataclass

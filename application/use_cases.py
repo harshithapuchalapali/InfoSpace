@@ -2,7 +2,7 @@ import logging
 from typing import Callable, Optional
 
 from domain import (
-    PageData, PageFetcherPort, PageParserPort, DataExporterPort,
+    PageFetcherPort, PageParserPort, DataExporterPort,
     ScrapeRequest, ScrapeResult, ExportRequest, RobotsBlockedError,
 )
 
@@ -23,7 +23,7 @@ class ScrapeUseCase:
 
         for url in request.urls:
             try:
-                page = self._fetcher.fetch(url)
+                page = self._fetcher.fetch(url, ignore_robots=request.ignore_robots)
             except RobotsBlockedError:
                 logger.warning("Robots.txt blocked: %s", url)
                 raise

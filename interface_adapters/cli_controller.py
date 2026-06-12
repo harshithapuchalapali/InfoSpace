@@ -51,7 +51,7 @@ class CliController:
 
         for url in self.args.urls:
             print(f"\n>> Fetching: {url}")
-            fetch_req = ScrapeRequest(urls=[url])
+            fetch_req = ScrapeRequest(urls=[url], ignore_robots=self.args.ignore_robots)
             try:
                 results = self._scrape_uc.execute(fetch_req)
             except RobotsBlockedError:

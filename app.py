@@ -10,8 +10,8 @@ import sys
 from flask import Flask, render_template
 
 from config import ScraperConfig
-from application import ScrapeUseCase, ExportUseCase
-from infrastructure import RequestsPageFetcher, BeautifulSoupPageParser, CsvExporter, JsonExporter
+from application import ScrapeUseCase
+from infrastructure import RequestsPageFetcher, BeautifulSoupPageParser
 from interface_adapters import web_bp
 from interface_adapters.web_controller import init_controllers
 
@@ -38,14 +38,10 @@ def create_app(config: ScraperConfig | None = None) -> Flask:
         fetcher=fetcher,
         parser_factory=lambda html, url: BeautifulSoupPageParser(html, url),
     )
-    export_uc = ExportUseCase({
-        "csv": CsvExporter(),
-        "json": JsonExporter(),
-    })
 
     app = Flask(__name__)
     app.register_blueprint(web_bp)
-    init_controllers(scrape_uc, export_uc)
+    init_controllers(scrape_uc)
 
     @app.route("/")
     def index():
